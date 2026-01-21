@@ -24,7 +24,7 @@ elif [[ ${CHECKLIST} == "file" ]]; then
 	read -p "Enter File Name with txt Extension: " FILE
 		if [[ -f ${WORKDIR}/${FILE} ]]; then
 		echo "File Exist"
-		read -p "Kya Aap Us File Ko Open Karna Cahte Hai (y/n)" choose
+		read -p "Kya Aap Us File Ko Open Karna Cahte Hai (y/n): " choose
 		if [[ ${choose} == "y" && -r ${WORKDIR}/${FILE} ]]; then
 			cat ${WORKDIR}/${FILE}
 		else
