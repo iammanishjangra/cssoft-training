@@ -727,16 +727,19 @@ then
 	echo -e "${GREEN}We Use Existed Keypair for Connecting with Server${NC}"
 	read -p "Enter Your Server User Name (Default: manish) : " USERNAME
 	USERNAME=${USERNAME:-manish}
-	read -p "Enter Your Server IP (192.168.x.x): " SERVER_IP
-	SERVER_IP=${SERVER_IP:-192.168.0.1}
+	read -p "Enter Your Server IP (Default: 100.112.254.3): " SERVER_IP
+	SERVER_IP=${SERVER_IP:-100.112.254.3}
 	echo "Copying SSH Keypair In Server"
 	ssh-copy-id -i ~/.ssh/manish.pub ${USERNAME}@${SERVER_IP}
 	echo "SSH Key Successfully Transfered to Host Address."
 	echo ""
 	echo "Copy All Files In Server..."
-	scp -r ~/Desktop/cssoft-training/linux-assignment ${USERNAME}@${SERVER_IP}:/home/${USERNAME}
-	echo "File Transfered !"
-	echo ""s
+	scp -r ~/Desktop/cssoft-training/linux-assignment ${USERNAME}@${SERVER_IP}:/home/${USERNAME}/
+	echo ""
+	sleep 2
+	echo "File Transfered Successfully !"
+	sleep 2
+	echo ""
 else
 	echo "Do Manually..."
 fi
