@@ -24,13 +24,13 @@ read -s -p "Enter Password: " password # -s Silent Flag for hide password in ter
 passwd $username
 echo ""
 echo "==> Password Created"
-read -p "Kya aap Apne User ki Detail dekhna cahte hai (y/n): " choose
+read -p "Want to Check User Created or Not (y/n): " choose
 
 if [[ $choose == "y" || $choose == "Y" ]]; then
 	echo ""
 	grep $username /etc/passwd
 else
-	echo "Aap Manual Check Kar sakte hai:"
+	echo "You can check it manually using this command."
 	echo ""
 	echo "Enter in Terminal:: grep $username /etc/passwd"
 fi
