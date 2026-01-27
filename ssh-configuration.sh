@@ -16,19 +16,20 @@ SSH_FILE_DIR=~/.ssh
 PUBLIC_FILE=${SSH_FILE_DIR}/${FILE_NAME}.pub
 FOLDER_DIR=~/Desktop/ServerConfig
 
-echo "===================================="
-echo "SSH KEY GENERATING STEPS"
-echo "===================================="
-
+clear
+echo "============================================================="
+echo "                SSH KEY GENERATING STEPS"
+echo "============================================================="
+echo ""
 echo "Making A SSH Key Using ssh-keygen"
 read -p "Enter SSH File Name: " FILE_NAME
 ssh-keygen -t ed25519 -f ${SSH_FILE_DIR}/${FILE_NAME} -N ""
 echo ""
 echo "Key Generated Successfully"
-
-echo "===================================="
-echo "SEND SSH KEY TO SERVER IP"
-echo "===================================="
+echo ""
+echo "============================================================="
+echo "              SEND SSH KEY TO SERVER IP"
+echo "============================================================="
 echo ""
 read -p "Enter SERVER User Name: " SERVER_USER
 read -p "Enter SERVER IP (192.168.x.x): " SERVER_IP
@@ -36,10 +37,9 @@ echo "Copying SSH KEY to Server..."
 ssh-copy-id -i ${SSH_FILE_DIR}/${FILE_NAME}.pub ${SERVER_USER}@${SERVER_IP}
 echo "SSH Key Successfully Transfered to Host Address"
 echo ""
-echo "===================================="
-echo "MAKE A FOLDER AND FILE"
-echo "===================================="
-# read -p "Enter Folder Name: " FOLDER_NAME
+echo "============================================================="
+echo "                  MAKE A FOLDER AND FILE"
+echo "============================================================="
 mkdir -p ~/Desktop/ServerConfig
 echo "Setup.txt File Generated In Folder"
 if [[ -f ${FOLDER_DIR}/ServerSetup.sh ]]; 
@@ -67,9 +67,9 @@ else
 fi
 echo "FILE GENERATED AND STORE IN FOLDER"
 echo ""
-echo "====================================="
-echo "CONNECTION USING SCP FILE TRANSFER"
-echo "====================================="
+echo "============================================================="
+echo "           CONNECTION USING SCP FILE TRANSFER"
+echo "============================================================="
 echo ""
 scp -r ${FOLDER_DIR} ${SERVER_USER}@${SERVER_IP}:/home/${SERVER_USER}
 echo ""
@@ -77,3 +77,11 @@ echo "FILE & FOLDER TRANSFER DONE"
 echo "GIVE PERMISSION TO FILE FOR EXECUTE"
 ssh -t ${SERVER_USER}@${SERVER_IP} "chmod +x ~/ServerConfig/ServerSetup.sh && bash ~/ServerConfig/ServerSetup.sh"
 echo "\nServer Setup is Done !"
+
+<< PersonalDetail
+
+Name:		Manish Kumar
+LinkedIn:	https://www.linkedin.com/in/manishjangra97
+GitHub:		https://www.github.com/iammanishjangra
+
+PersonalDetails
