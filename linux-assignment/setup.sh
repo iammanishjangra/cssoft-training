@@ -551,11 +551,16 @@ echo -e "${GREEN}$(tar -cvf backup.tar ./devops_practice)${NC}"
 echo ""
 echo -e "Folder Archived: ${GREEN}$(ls backup.tar)${NC}"
 echo ""
+echo "[+] COMPRESS ARCHIVE [+]"
+echo ""
+echo "Archived Compressed ! $(gzip ~/backup.tar)"
+echo -e "[ ${GREEN}$(ls backup.tar.gz)${NC}  ]"
+echo ""
 echo "[+] EXTRACT COMPRESS ARCHIVE [+]"
 echo ""
-echo -e "[[ Extracting Using ${RED}tar -xvf backup.tar -C ~/Desktop${NC} Command ]]"
+echo -e "[[ Extracting Using ${RED}tar -xvf backup.tar.gz -C ~/Desktop${NC} Command ]]"
 echo "Extracting ...."
-echo -e "${GREEN}$(tar -xvf backup.tar -C ~/Desktop)${NC}"
+echo -e "${GREEN}$(tar -xvf backup.tar.gz -C ~/Desktop)${NC}"
 echo ""
 echo -e "Archive Extracted: ${GREEN}$(ls -d ~/Desktop/devops_practice/)${NC}"
 echo ""
@@ -710,7 +715,7 @@ echo ""
 echo "File Generated !"
 sleep 2
 
-read -p "Want to Remove All Unnecessary Files (y/n)" CHOOSE
+read -p "Want to Remove All Unnecessary Files (y/n): " CHOOSE
 if [[ ${CHOOSE} == 'y' || ${CHOOSE} == 'Y' ]];
 then
 	echo -e "Removing ${GREEN}devops_practice${NC}, ${GREEN}Screenshots${NC}, ${GREEN}Archive Files${NC}"
@@ -764,7 +769,7 @@ options=(
 # Loop
 while true;
 do
-	clear
+#	clear
 	echo ""
 	echo -e "========================================================================="
 	echo -e "                        LINUX ASSIGNMENT MENU"
@@ -816,8 +821,8 @@ do
 				echo ""
 				exit 0
 				;;
-			"*")
-				echo "Invalid Option"
+			*)
+				echo "Invalid Option. Please choose 1 to 9"
 				break
 				;;
 		esac
