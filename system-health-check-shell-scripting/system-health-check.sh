@@ -107,11 +107,60 @@ cpu_usages() {
     fi
 }
 
+email_service() {
+	clear
+	echo "========================================================"
+	echo "   INSTALL DEPENDENCIES"
+	echo "========================================================"
+	echo ""
+	sudo apt update
+	sudo apt install postfix libsasl2-modules bsd-mailx -y
+	echo ""
+	echo -e "\nrelayhost = [smtp.gmail.com]:587 \nsmtp_use_tls = yes \nsmtp_sasl_auth_enable = yes \nsmtp_sasl_security_options = noanonymous \nsmtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd \nsmtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt" >> sudo nano /etc/postfix/main.cf
+	echo ""
+	echo "========================================================"
+	echo " POSTFIX CONFIGURATION COMPLETE"
+	echo "========================================================"
+	echo ""
+	echo "========================================================"
+	echo "  LOGIN CRENDENTIAL CONFIGURATION"
+	echo "========================================================"
+	echo ""
+	read -p "Enter Email Address: " LOGIN_MAIL
+	echo ""
+	echo "========================================================"
+	echo -e "Go To Google Mail Account Setting, Then Search App Password \nEnter Custom Name, Then Copy 16 Character Code \nAnd Paste it Here"
+	echo "========================================================"
+	echo ""
+	read -p "Enter App Passoword [ 16 character code ]: " APP_PASSWORD
+	echo "[smtp.gmail.com]:587 ${LOGIN_MAIL}:${APP_PASSWORD}" > sudo nano /etc/postfix/sasl_passwd
+	echo ""
+	echo "========================================================"
+	echo " LOGIN CREDENTIAL CONFIGURATION COMPLETE"
+	echo "========================================================"
+	echo ""
+	sudo postmap /etc/postfix/sasl_passwd
+	sudo chmod 600 /etc/postfix/sasl_passwd /etc/postfix/sasl_passwd.db
+	sudo systemctl restart postfix
+	echo ""
+	echo "========================================================"
+	echo " TEST EMAIL ADDRESS WORKING ?"
+	echo "========================================================"
+	read -p "Enter Custom Test Message: " TEST_MESSAGE
+	read -p "Enter Message Subject: " MSG_SUBJECT
+	read -p "Enter Email Address, Where Send SMS: " SEND_MAIL
+	echo "${TEST_MESSAGE}" | mail -s "${MSG_SUBJECT}" "${SEND_MAIL}"
+	echo ""
+	echo "========================================================"
+	echo " TEST SMS SENT SUCCESSFULLY"
+	echo "========================================================"
+}
+
 # =============================================================
 # MAIN MENU
 # =============================================================
 PS3="Enter the option [1 - 4]: "
-options=("RAM Usages" "Disk Usages" "CPU Usages" "Exit")
+options=("RAM Usages" "Disk Usages" "CPU Usages" "Install Email Service" "Exit")
 
 while true; do
     echo "========================================================="
@@ -127,6 +176,9 @@ while true; do
 		break ;;
             "CPU Usages")
 		cpu_usages;
+		break ;;
+	    "Install Email Service")
+		email_service;
 		break ;;
             "Exit")
                 echo "=============================="
