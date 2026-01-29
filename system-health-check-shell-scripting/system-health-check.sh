@@ -116,7 +116,7 @@ email_service() {
 	sudo apt update
 	sudo apt install postfix libsasl2-modules bsd-mailx -y
 	echo ""
-	echo -e "\nrelayhost = [smtp.gmail.com]:587 \nsmtp_use_tls = yes \nsmtp_sasl_auth_enable = yes \nsmtp_sasl_security_options = noanonymous \nsmtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd \nsmtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt" >> sudo nano /etc/postfix/main.cf
+	echo -e "\nrelayhost = [smtp.gmail.com]:587 \nsmtp_use_tls = yes \nsmtp_sasl_auth_enable = yes \nsmtp_sasl_security_options = noanonymous \nsmtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd \nsmtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt" >> /etc/postfix/main.cf
 	echo ""
 	echo "========================================================"
 	echo " POSTFIX CONFIGURATION COMPLETE"
@@ -133,7 +133,7 @@ email_service() {
 	echo "========================================================"
 	echo ""
 	read -p "Enter App Passoword [ 16 character code ]: " APP_PASSWORD
-	echo "[smtp.gmail.com]:587 ${LOGIN_MAIL}:${APP_PASSWORD}" > sudo nano /etc/postfix/sasl_passwd
+	echo -e "[smtp.gmail.com]:587 ${LOGIN_MAIL}:${APP_PASSWORD}" > /etc/postfix/sasl_passwd
 	echo ""
 	echo "========================================================"
 	echo " LOGIN CREDENTIAL CONFIGURATION COMPLETE"
