@@ -1,0 +1,42 @@
+# version: "3.9" WARN[0000] /home/manishjangra97/Desktop/docker-assignment/compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion 
+
+services:
+  node-backend:
+    container_name: node-backend
+    image: node-backend:latest
+    build:
+      context: ./node-backend
+      dockerfile: Dockerfile
+    expose:
+      - "3000"
+    networks:
+      - my-node-network
+
+  mysql:
+    container_name: mysql-database
+    image: mysql:latest
+    env_file:
+      - ./mysql/.env
+    volumes:
+      - mysql-volume:/var/lib/mysql
+    networks:
+      - my-node-network
+  nginx:
+    container_name: nginx-proxy
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - node-backend
+    networks:
+      - my-node-network
+
+volumes:
+  mysql-volume:
+    name: mysql-volume
+networks:
+  my-node-network:
+    driver: bridge
+    name: my-node-network
