@@ -10,15 +10,12 @@ End of the project, we learned how to create and run a docker container and expo
 
 ### RUN COMMANDS
 First of All We Clone the Public Repository on Local Machine.
-```bash
-git clone /URL/
+'git clone [/URL/](https://github.com/iammanishjangra/cssoft-training/edit/main/docker-projects/project-1/)'
 
 Then Run the Build Command
-```bash
-docker build -t <docker_image_name> .
+'docker build -t <docker_image_name> .'
 
 After Created A Docker Image, we Run as A Docker Container
-```bash
-docker run -d -p 80:80 <docker_image_name>
+'docker run -d -p 80:80 <docker_image_name>'
 
 Finally Run https://localhost in Any Browser.
