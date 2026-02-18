@@ -131,5 +131,5 @@ This is a fundamental step toward learning containerization and deploying web ap
 
 ## 👨‍💻 Author
 
-Your Name  
+Manish Kumar
 Docker & DevOps Learning Project
