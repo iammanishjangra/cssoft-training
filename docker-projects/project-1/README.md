@@ -1,21 +1,135 @@
-# SETTING UP A SIMPLE WEB SERVER
-In this project, We create a Docker container that runa basic web server using Nginx.
-Nginx is one of the most popular open-source web server. Its helps for reverse-proxy, load balancing, serve our multi web documents like a website etc. 
-End of the project, we learned how to create and run a docker container and expose port. We make a folder and add index.html file inside. With the help of nginx, we serve this on our local machine browser using docker conaitner.
+# 🚀 Setting Up a Simple Web Server Using Docker and Nginx
 
-## PREREQUISITE
-- Install Docker On Local Machine.
-- Create  A Project Directory like project-1/
-- Write a Dockerfile for creating Docker Image and run as a Container.
+## 📖 Project Overview
 
-### RUN COMMANDS
-First of All We Clone the Public Repository on Local Machine.
-'git clone [/URL/](https://github.com/iammanishjangra/cssoft-training/edit/main/docker-projects/project-1/)'
+In this project, we create a Docker container that runs a basic web server using **Nginx**.
 
-Then Run the Build Command
-'docker build -t <docker_image_name> .'
+Nginx is one of the most popular open-source web servers. It is widely used for:
+- Reverse proxy
+- Load balancing
+- Serving static websites
+- Hosting web applications
 
-After Created A Docker Image, we Run as A Docker Container
-'docker run -d -p 80:80 <docker_image_name>'
+By the end of this project, you will learn how to:
+- Create a Docker image
+- Run a Docker container
+- Expose ports
+- Serve a simple HTML webpage locally using Docker and Nginx
 
-Finally Run https://localhost in Any Browser.
+---
+
+## 📌 Prerequisites
+
+Before starting, make sure you have:
+
+- Docker installed on your local machine
+- Basic knowledge of Docker commands
+- Git installed (optional, for cloning the repository)
+
+---
+
+## 📁 Project Structure
+
+```
+project-1/
+│── Dockerfile
+│── index.html
+```
+
+---
+
+## 🛠️ Step 1: Clone the Repository
+
+Clone the public repository:
+
+```
+git clone https://github.com/iammanishjangra/cssoft-training.git
+```
+
+Navigate to the project directory:
+
+```
+cd cssoft-training/docker-projects/project-1
+```
+
+---
+
+## 🐳 Step 2: Build the Docker Image
+
+Run the following command inside the project directory:
+
+```
+docker build -t <docker_image_name> .
+```
+
+Replace `<docker_image_name>` with your preferred image name.
+
+Example:
+
+```
+docker build -t my-nginx-server .
+```
+
+---
+
+## ▶️ Step 3: Run the Docker Container
+
+After building the image, run the container:
+
+```
+docker run -d -p 80:80 <docker_image_name>
+```
+
+Example:
+
+```
+docker run -d -p 80:80 my-nginx-server
+```
+
+Explanation:
+- `-d` → Run container in detached mode
+- `-p 80:80` → Map local port 80 to container port 80
+
+---
+
+## 🌐 Step 4: Access the Application
+
+Open your browser and visit:
+
+```
+http://localhost
+```
+
+You should now see your `index.html` page served using Nginx inside a Docker container.
+
+---
+
+## 🧾 Sample Dockerfile
+
+Here is a simple example Dockerfile for this project:
+
+```
+FROM nginx:latest
+COPY index.html /usr/share/nginx/html/index.html
+EXPOSE 80
+```
+
+---
+
+## ✅ Conclusion
+
+In this project, you successfully:
+
+- Built a Docker image  
+- Created and ran a Docker container  
+- Exposed a port  
+- Served a static webpage using Nginx  
+
+This is a fundamental step toward learning containerization and deploying web applications using Docker.
+
+---
+
+## 👨‍💻 Author
+
+Your Name  
+Docker & DevOps Learning Project
